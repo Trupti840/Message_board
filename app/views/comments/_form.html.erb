@@ -1,0 +1,13 @@
+
+
+
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <p class="lead">
+    	<%= simple_form_for ([@message, @message.comments.build]) do |f| %>
+			<%= f.input :content, label: "Content"%>
+			<%= f.button :submit %>
+		<% end%>
+    </p>
+  </div>
+</div>

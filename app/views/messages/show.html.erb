@@ -1,0 +1,48 @@
+<div class="container mg-2">
+	<div class="jumbotron jumbotron-fluid">
+	  <div class="container">
+	    <h1 class="display-4"><strong><%= @message.title %></strong></h1>
+   		  <hr class="my-4">
+
+	    <p class="lead">
+		<p>Posted by <%= @message.user.email %><%= time_ago_in_words(@message.created_at) %>ago</p>
+
+		<br/>
+		<h3>
+		<%= @message.description %></h3>
+		<br/>
+		<h3 class="display-4"><strong>Comments:</strong></h3>
+		<p>		<%= render @message.comments %>
+		</p>
+
+		</p>
+	  </div>
+	</div>
+	<br/>
+	<div class="card">
+	  <div class="card-body">
+	  	<h3>Reply To Message</h3>
+		<%= render 'comments/form' %>
+
+	<% if user_signed_in? %>
+		<% if @message.user_id == current_user.id %>
+			<%= link_to "Edit Message", edit_message_path, class: "btn btn-info"%>
+
+			<%= button_to "Delete", @message ,method:'delete',class: "btn btn-danger",data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }%>
+		<% end %>
+	<% end %>
+
+	  </div>
+	</div>
+
+
+	
+	<br/>
+	<%= link_to "Back", root_path, class: "btn btn-secondary btn-outline"%>
+	<br>
+	<br>
+	<br>
+
+
+</div>
+

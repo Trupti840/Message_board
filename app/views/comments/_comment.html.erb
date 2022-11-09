@@ -1,0 +1,12 @@
+<p><%= comment.content.capitalize() %></p>
+<p><h4><b>Posted by <%= comment.user.email %><%= time_ago_in_words(comment.created_at) %>ago</h4></b></p>
+	
+
+<% if user_signed_in?%>
+	<% if @message.user_id == current_user.id %>
+
+		<%= link_to "Edit Comment", edit_message_comment_path(comment.message , comment),class: "btn btn-outline btn-info"%>
+
+		<%= button_to "Delete", message_comment_path(comment.message , comment), method: 'delete', data: { confirm: "Are you sure" },class: "btn btn-danger"%>
+	<% end %>
+<% end %>
